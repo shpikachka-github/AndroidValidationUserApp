@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Validation User App</string>
-    <string name="editTextName">Name</string>
-    <string name="editTextEmail">Email</string>
-    <string name="editTextPassword">Password</string>
-    <string name="editTextPasswordConfirm">Password confirm</string>
+    <string name="inputEditTextName">Name</string>
+    <string name="inputEditTextEmail">Email</string>
+    <string name="inputEditTextPassword">Password</string>
+    <string name="inputEditTextPasswordConfirm">Password confirm</string>
     <string name="buttonSave">save</string>
 </resources>
