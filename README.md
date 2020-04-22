@@ -4,4 +4,4 @@ Application with a user validation form
 
 Use library:
 ------------
-* RxBinding
+* android.support.design
