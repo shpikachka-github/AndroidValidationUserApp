@@ -1,5 +1,6 @@
 package org.nano.androidvalidationuserapp;
 
+import android.content.Intent;
 import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -236,6 +237,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickSave(View view) {
+        Intent intent = new Intent(this, SaveActivity.class);
 
+        intent.putExtra("name", Objects.requireNonNull(textInputLayoutName.getEditText()).getText().toString());
+        intent.putExtra("email", Objects.requireNonNull(textInputLayoutEmail.getEditText()).getText().toString());
+        intent.putExtra("password", Objects.requireNonNull(textInputLayoutPassword.getEditText()).getText().toString());
+
+        startActivity(intent);
     }
 }
