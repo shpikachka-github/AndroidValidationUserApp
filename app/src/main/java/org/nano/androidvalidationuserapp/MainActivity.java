@@ -23,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
     private TextInputLayout textInputLayoutPassword;
     private TextInputLayout textInputLayoutPasswordConfirm;
 
-    protected boolean isConfirmName;
-    protected boolean isConfirmEmail;
-    protected boolean isConfirmPassword;
-    protected boolean isConfirmPasswordTwo;
+    private boolean isConfirmName;
+    private boolean isConfirmEmail;
+    private boolean isConfirmPassword;
+    private boolean isConfirmPasswordTwo;
 
     private Button buttonSave;
 
@@ -227,7 +227,8 @@ public class MainActivity extends AppCompatActivity {
         String inputPasswordConfirm = Objects.requireNonNull(textInputLayoutPasswordConfirm.getEditText()).getText().toString().trim();
         if (inputPasswordConfirm.isEmpty()) {
             isConfirmPasswordTwo = false;
-        } else isConfirmPasswordTwo = inputPasswordConfirm.equals(Objects.requireNonNull(textInputLayoutPassword.getEditText()).getText().toString().trim());
+        } else
+            isConfirmPasswordTwo = inputPasswordConfirm.equals(Objects.requireNonNull(textInputLayoutPassword.getEditText()).getText().toString().trim());
     }
 
     private void onConfirm() {
