@@ -1,5 +1,6 @@
 package org.nano.androidvalidationuserapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.text.Editable;
@@ -236,13 +237,17 @@ public class MainActivity extends AppCompatActivity {
             buttonSave.setEnabled(false);
     }
 
+    @SuppressLint("ResourceType")
     public void onClickSave(View view) {
+
+        String name = Objects.requireNonNull(textInputLayoutName.getEditText()).getText().toString();
+        String email = Objects.requireNonNull(textInputLayoutEmail.getEditText()).getText().toString();
+        String password = Objects.requireNonNull(textInputLayoutPassword.getEditText()).getText().toString();
+
         Intent intent = new Intent(this, SaveActivity.class);
-
-        intent.putExtra("name", Objects.requireNonNull(textInputLayoutName.getEditText()).getText().toString());
-        intent.putExtra("email", Objects.requireNonNull(textInputLayoutEmail.getEditText()).getText().toString());
-        intent.putExtra("password", Objects.requireNonNull(textInputLayoutPassword.getEditText()).getText().toString());
-
+        intent.putExtra("name", name);
+        intent.putExtra("email", email);
+        intent.putExtra("password", password);
         startActivity(intent);
     }
 }
