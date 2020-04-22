@@ -1,43 +1,30 @@
 package org.nano.androidvalidationuserapp;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-import androidx.annotation.Nullable;
 
 public class SaveActivity extends Activity {
 
-    private String name;
-    private String email;
-    private String password;
-
-    private TextView textViewName;
-    private TextView textViewEmail;
-    private TextView textViewPassword;
-
+    @SuppressLint("SetTextI18n")
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_save);
 
-        textViewName = findViewById(R.id.textViewName);
-        textViewEmail = findViewById(R.id.textViewEmail);
-        textViewPassword = findViewById(R.id.textViewPassword);
+        TextView textView = new TextView(this);
+        textView.setTextSize(24);
+        textView.setPadding(32, 32, 32, 32);
 
-        Intent intent = getIntent();
+        Bundle bundle = getIntent().getExtras();
 
-        name = intent.getStringExtra(name);
-        email = intent.getStringExtra(email);
-        password = intent.getStringExtra(password);
-    }
+        if (bundle != null) {
+            String name = bundle.getString("name");
+            String email = bundle.getString("email");
+            String password = bundle.getString("password");
+            textView.setText("Name: " + name + "\nEmail: " + email + "\nPassword: " + password);
+        }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        textViewName.setText(name);
-        textViewEmail.setText(email);
-        textViewPassword.setText(password);
+        setContentView(textView);
     }
 }
