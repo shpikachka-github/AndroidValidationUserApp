@@ -3,6 +3,7 @@ package org.nano.androidvalidationuserapp;
 import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import androidx.annotation.RequiresApi;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
     protected boolean isConfirmPasswordTwo;
 
     private Button buttonSave;
+
+    private static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^" +
+                    "(?=.*[0-9])" +
+                    "(?=.*[a-z])" +
+                    "(?=.*[A-Z])" +
+                    "(?=.\\S+$)" +
+                    ".{5,}");
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
@@ -147,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
             String inputEmail = Objects.requireNonNull(textInputLayoutEmail.getEditText()).getText().toString().trim();
             if (inputEmail.isEmpty()) {
                 textInputLayoutEmail.setError("Field can't be empty");
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(inputEmail).matches()) {
+                textInputLayoutEmail.setError("Email is't valid");
             } else {
                 textInputLayoutEmail.setError(null);
             }
@@ -159,6 +171,10 @@ public class MainActivity extends AppCompatActivity {
             String inputPassword = Objects.requireNonNull(textInputLayoutPassword.getEditText()).getText().toString().trim();
             if (inputPassword.isEmpty()) {
                 textInputLayoutPassword.setError("Field can't be empty");
+            } else if (inputPassword.length() < 5) {
+                textInputLayoutPassword.setError("Password too short");
+            } else if (!PASSWORD_PATTERN.matcher(inputPassword).matches()) {
+                textInputLayoutPassword.setError("You must use (a-z), (A-Z) and (0-9) in your password");
             } else {
                 textInputLayoutPassword.setError(null);
             }
@@ -191,12 +207,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void validateEmail() {
         String inputEmail = Objects.requireNonNull(textInputLayoutEmail.getEditText()).getText().toString().trim();
-        isConfirmEmail = !inputEmail.isEmpty();
+        if (inputEmail.isEmpty()) {
+            isConfirmEmail = false;
+        } else isConfirmEmail = Patterns.EMAIL_ADDRESS.matcher(inputEmail).matches();
     }
 
     private void validatePassword() {
         String inputPassword = Objects.requireNonNull(textInputLayoutPassword.getEditText()).getText().toString().trim();
-        isConfirmPassword = !inputPassword.isEmpty();
+        if (inputPassword.isEmpty()) {
+            isConfirmPassword = false;
+        } else if (inputPassword.length() < 5) {
+            isConfirmPassword = false;
+        } else isConfirmPassword = PASSWORD_PATTERN.matcher(inputPassword).matches();
     }
 
     private void validatePasswordConfirm() {
