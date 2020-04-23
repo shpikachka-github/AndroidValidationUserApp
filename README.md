@@ -7,4 +7,4 @@ Use library:
 
 Download
 --------
-* [yandex.disk - ValidateUserApp(Android Studio).apk](https://yadi.sk/d/-Ec-6DL4KSRSeA)
+* [disk.ya - ValidateUserApp(Android Studio).apk](https://yadi.sk/d/-Ec-6DL4KSRSeA)
