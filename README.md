@@ -1,8 +1,5 @@
 Validation User App
 ============================
-Application with a user validation form
-
-<img src="validate_user_app.gif" alt="drawing" width="280"/>
 
 Use library:
 ------------
